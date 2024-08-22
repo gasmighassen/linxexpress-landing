@@ -18,7 +18,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import PhoneIcon from "@mui/icons-material/Phone";
 import Flag from "react-flagkit";
 import { Link as ScrollLink } from "react-scroll";
-import { useTheme } from "../ThemeContext";
+
 import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
