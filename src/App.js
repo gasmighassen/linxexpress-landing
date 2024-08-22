@@ -7,7 +7,7 @@ import ContactUs from "./components/ContactUs";
 import Footer from "./components/Footer";
 import TestimonialCarousel from "./components/Testimonials";
 import ApplySection from "./components/ApplySection";
-import { ThemeProvider, useTheme } from "./ThemeContext";
+import { ThemeProvider } from "./ThemeContext";
 import { useTranslation } from "react-i18next";
 import VideoBackground from "./components/VideoBackground";
 const AppContent = () => {
