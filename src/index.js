@@ -1,10 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import AOS from "aos";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./i18n";
+import "aos/dist/aos.css"; // Import AOS CSS
+const root = ReactDOM.createRoot(document.getElementById("root"));
+AOS.init();
 root.render(
   <React.StrictMode>
     <App />
