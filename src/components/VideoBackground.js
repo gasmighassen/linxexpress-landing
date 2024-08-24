@@ -26,6 +26,7 @@ const VideoBackground = () => {
         autoPlay
         muted
         loop
+        playsInline
         src="/bg-vid1.mp4" // Path to your video file
         sx={{
           position: "absolute",
@@ -35,6 +36,7 @@ const VideoBackground = () => {
           height: "100%",
           objectFit: "cover",
           zIndex: 1, // Ensures video is below the overlay
+          controls: false, // Hide controls on mobile browsers
         }}
       />
 
@@ -92,20 +94,6 @@ const VideoBackground = () => {
           Votre Lien de Confiance pour les Services de Transport à Travers la
           Tunisie
         </Typography>
-        {/* <Typography
-          variant="body1"
-          sx={{
-            fontSize: { xs: "1rem", sm: "1.25rem" },
-            marginBottom: "20px",
-            color: theme.textSecondary,
-          }}
-        >
-          At Linxexpress, we specialize in providing reliable and efficient
-          transportation services for all your needs. Whether you're moving
-          goods across town or across the country, our team is here to ensure a
-          seamless experience. Trust us for fast, secure, and affordable
-          transportation solutions.
-        </Typography> */}
       </Box>
 
       {/* Arrow Button */}
