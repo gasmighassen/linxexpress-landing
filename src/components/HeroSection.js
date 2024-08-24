@@ -6,7 +6,7 @@ import { useTheme } from "styled-components";
 import { useTranslation } from "react-i18next";
 import Blob1 from "../assets/blob/blob.svg";
 import Blob2 from "../assets/blob/blob1.svg";
-
+import Line from "../assets/blob/line.svg";
 const Hero = () => {
   const theme = useTheme();
   const { i18n } = useTranslation();
@@ -24,10 +24,6 @@ const Hero = () => {
     : `${i18n.t("opportunityText")}`;
 
   const direction = i18n.dir();
-
-  const blobs = [Blob1, Blob2];
-  const randomBlob1 = blobs[Math.floor(Math.random() * blobs.length)];
-  const randomBlob2 = blobs[Math.floor(Math.random() * blobs.length)];
 
   return (
     <Box
@@ -48,7 +44,7 @@ const Hero = () => {
       {/* Blob 1 */}
       <Box
         component="img"
-        src={randomBlob1}
+        src={Blob1}
         alt="Blob 1"
         sx={{
           position: "absolute",
@@ -65,14 +61,14 @@ const Hero = () => {
             },
             to: { transform: "translateX(0)" },
           },
-          display: { xs: "none", sm: "block" }, // Hide on mobile
+          display: { xs: "none", md: "block" }, // Hide on mobile
         }}
       />
 
       {/* Blob 2 */}
       <Box
         component="img"
-        src={randomBlob2}
+        src={Blob2}
         alt="Blob 2"
         sx={{
           position: "absolute",
@@ -90,10 +86,34 @@ const Hero = () => {
             },
             to: { transform: "translateX(0)" },
           },
-          display: { xs: "none", sm: "block" }, // Hide on mobile
+          display: { xs: "none", md: "block" }, // Hide on mobile
         }}
       />
-
+      <Box
+        component="img"
+        src={Line}
+        alt="Line"
+        sx={{
+          position: "absolute",
+          bottom: "20%",
+          left: "10%",
+          opacity: 0.5,
+          [direction === "rtl" ? "left" : "right"]: "-30%",
+          width: "100%",
+          height: "100%",
+          zIndex: 0,
+          animation: "blobSlideIn 1s ease-out forwards",
+          animationDelay: "0.5s",
+          "@keyframes blobSlideIn": {
+            from: {
+              transform:
+                direction === "rtl" ? "translateX(-100%)" : "translateX(100%)",
+            },
+            to: { transform: "translateX(0)" },
+          },
+          display: { xs: "none", md: "block" }, // Hide on mobile
+        }}
+      />
       <Container maxWidth="lg">
         <Grid
           container

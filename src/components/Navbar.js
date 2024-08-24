@@ -149,7 +149,7 @@ const Navbar = () => {
               },
             }}
           >
-            +216 12 345 678 {i18n.t("joinDriver")}
+            {i18n.t("joinDriver")}
           </Button>
         </ListItem>
         <ListItem
@@ -288,16 +288,20 @@ const Navbar = () => {
               </ScrollLink>
             </Box>
             <Box
-              sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}
+              sx={{
+                display: { xs: "none", md: "flex" },
+                alignItems: "center",
+                gap: "1rem",
+              }}
             >
               <Button
                 variant="contained"
-                startIcon={<PhoneIcon />}
+                // startIcon={<PhoneIcon />}
                 sx={{
                   backgroundColor: "#fff", // White background for buttons
                   color: "#003285", // Blue text
-                  fontSize: { xs: "0.875rem", sm: "1rem" },
                   marginLeft: 2,
+
                   "&:hover": {
                     backgroundColor: "#fff", // Maintain white background on hover
                     color: "#003285", // Maintain blue text on hover
@@ -311,9 +315,10 @@ const Navbar = () => {
                 variant="outlined"
                 onClick={handleLanguageMenuOpen}
                 sx={{
+                  gap: "1rem",
                   color: scrolled ? "#003285" : "#fff", // Blue text after scroll, white before scroll
                   borderColor: scrolled ? "#003285" : "#fff", // Blue border after scroll, white before scroll
-                  marginLeft: 2,
+
                   "&:hover": {
                     color: "#003285", // Maintain blue text on hover
                     borderColor: "#003285", // Maintain blue border on hover
@@ -321,7 +326,9 @@ const Navbar = () => {
                   },
                 }}
               >
-                <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Box
+                  sx={{ display: "flex", alignItems: "center", gap: "1rem" }}
+                >
                   <Flag
                     country={
                       i18n.language === "fr"

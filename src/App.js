@@ -10,6 +10,7 @@ import ApplySection from "./components/ApplySection";
 import { ThemeProvider } from "./ThemeContext";
 import { useTranslation } from "react-i18next";
 import VideoBackground from "./components/VideoBackground";
+
 const AppContent = () => {
   const { i18n } = useTranslation(); // Import the i18n instance
   const lang = i18n.language;

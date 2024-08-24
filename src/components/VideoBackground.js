@@ -66,11 +66,13 @@ const VideoBackground = () => {
         }}
       >
         <Typography
-          variant="h2"
+          variant="h1"
           component="h1"
           gutterBottom
           sx={{
-            fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
+            fontSize: { xs: "4rem", sm: "4.25rem", md: "6.25rem" },
+            fontFamily: "Poppins, sans-serif",
+
             marginBottom: "20px",
             opacity: 0,
             animation: "fadeIn 1s ease-out forwards",
@@ -89,6 +91,7 @@ const VideoBackground = () => {
             marginBottom: "40px",
             opacity: 0,
             animation: "fadeIn 1s ease-out 0.5s forwards",
+            fontFamily: "Poppins, sans-serif",
           }}
         >
           Votre Lien de Confiance pour les Services de Transport à Travers la

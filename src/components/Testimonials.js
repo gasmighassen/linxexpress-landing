@@ -4,7 +4,6 @@ import { Box, Typography, Container, Card, CardContent } from "@mui/material";
 import { Star } from "@mui/icons-material";
 import { useTheme } from "../ThemeContext";
 
-// Sample testimonials
 const testimonials = [
   {
     name: "John Doe",
@@ -38,43 +37,26 @@ const TestimonialCarousel = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
+    adaptiveHeight: true,
   };
   const { theme } = useTheme();
+
   return (
     <Box
       sx={{
         position: "relative",
-        padding: "80px 20px",
-        backgroundColor: theme.primary, // Blue background color
-        color: "#fff", // White text color for contrast
+        padding: { xs: "40px 20px", sm: "80px 20px" },
+        backgroundColor: theme.primary,
+        color: "#fff",
+        textAlign: "center",
       }}
     >
-      {/* <Box
-        sx={{
-          position: "absolute",
-          top: -10,
-          left: 0,
-          width: "100%",
-          height: "auto",
-          overflow: "hidden",
-          zIndex: 2,
-        }}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path
-            fill="#FFF"
-            fillOpacity="1"
-            d="M0,96L40,85.3C80,75,160,53,240,42.7C320,32,400,32,480,26.7C560,21,640,11,720,32C800,53,880,107,960,106.7C1040,107,1120,53,1200,32C1280,11,1360,21,1400,26.7L1440,32L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
-          ></path>
-        </svg>
-      </Box> */}
       <Container maxWidth="lg">
         <Typography
           variant="h4"
           component="h2"
           gutterBottom
-          align="center"
-          color="#fff" // White text color for the header
+          color="#fff"
           data-aos="fade-up"
           data-aos-duration="1000"
         >
@@ -82,39 +64,59 @@ const TestimonialCarousel = () => {
         </Typography>
         <Slider {...settings}>
           {testimonials.map((testimonial, index) => (
-            <Card
+            <Box
               key={index}
               sx={{
-                padding: 3,
-                textAlign: "center",
-                boxShadow: 3,
-                borderRadius: "8px",
-                backgroundColor: "#fff", // White background for cards
-                color: theme.primary, // Blue text color for cards
+                width: "100%", // Ensure the slide takes up the full width
+                padding: 0,
               }}
-              data-aos="fade-up"
-              data-aos-duration="1200"
             >
-              <CardContent>
-                <Typography variant="h6" gutterBottom color="#000">
-                  "{testimonial.testimonial}"
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  - {testimonial.name}, {testimonial.role}
-                </Typography>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    marginTop: 1,
-                  }}
-                >
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} sx={{ color: "#FFD700" }} />
-                  ))}
-                </Box>
-              </CardContent>
-            </Card>
+              <Card
+                sx={{
+                  padding: { xs: 2, sm: 3 },
+                  textAlign: "center",
+                  boxShadow: 3,
+                  borderRadius: "8px",
+                  backgroundColor: "#fff",
+                  color: theme.primary,
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+                data-aos="fade-up"
+                data-aos-duration="1200"
+              >
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    gutterBottom
+                    color="#000"
+                    sx={{ fontSize: { xs: "1rem", sm: "1.25rem" } }}
+                  >
+                    "{testimonial.testimonial}"
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    color="textSecondary"
+                    sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}
+                  >
+                    - {testimonial.name}, {testimonial.role}
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      marginTop: 1,
+                    }}
+                  >
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} sx={{ color: "#FFD700" }} />
+                    ))}
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
           ))}
         </Slider>
       </Container>
