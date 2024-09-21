@@ -1,65 +1,123 @@
-import React from "react";
-import { Box, Typography, Link, Container, Grid } from "@mui/material";
-import { useTheme } from "../ThemeContext";
+import React from 'react';
+import { Box, Typography, Container, Grid } from '@mui/material';
+import { useTheme } from '../ThemeContext';
+import { useTranslation } from 'react-i18next'; // Import for translations
+import { Link as ScrollLink } from 'react-scroll'; // Correctly import ScrollLink from react-scroll
 
 const Footer = () => {
   const { theme } = useTheme();
+  const { t } = useTranslation(); // Hook for translations
 
   return (
     <Box
       sx={{
-        padding: "40px 20px",
-        backgroundColor: theme.primary,
-        color: theme.text,
+        padding: '40px 20px',
+        background: `linear-gradient(135deg, ${theme.primary} 0%, #003285 100%)`, // New gradient background
+        color: '#fff', // White text for better contrast
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         <Grid container spacing={4}>
+          {/* Company Section */}
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" gutterBottom>
+            <Typography
+              variant='h6'
+              gutterBottom
+              sx={{ fontWeight: 'bold', fontFamily: "'Poppins', sans-serif" }}
+            >
               Linxexpress
             </Typography>
-            <Typography variant="body2">
-              Your reliable partner in transportation across Tunisia.
+            <Typography
+              variant='body2'
+              sx={{ fontSize: '0.9rem', color: '#ddd' }}
+            >
+              {t('footerDescription')} {/* Translated footer description */}
             </Typography>
           </Grid>
+
+          {/* Quick Links Section */}
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" gutterBottom>
-              Quick Links
+            <Typography
+              variant='h6'
+              gutterBottom
+              sx={{ fontWeight: 'bold', fontFamily: "'Poppins', sans-serif" }}
+            >
+              {t('quickLinks')} {/* Translated "Quick Links" */}
             </Typography>
-            <Link
-              href="#home"
-              color="inherit"
-              sx={{ display: "block", marginBottom: "0.5rem" }}
+
+            {/* Scroll Links */}
+            <ScrollLink
+              to='home'
+              smooth={true}
+              duration={500}
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                color: '#ccc',
+                cursor: 'pointer',
+              }}
             >
-              Home
-            </Link>
-            <Link
-              href="#services"
-              color="inherit"
-              sx={{ display: "block", marginBottom: "0.5rem" }}
+              {t('home')} {/* Translated "Home" */}
+            </ScrollLink>
+            <ScrollLink
+              to='services'
+              smooth={true}
+              duration={500}
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                color: '#ccc',
+                cursor: 'pointer',
+              }}
             >
-              Services
-            </Link>
-            <Link
-              href="#contact"
-              color="inherit"
-              sx={{ display: "block", marginBottom: "0.5rem" }}
+              {t('services')} {/* Translated "Services" */}
+            </ScrollLink>
+            <ScrollLink
+              to='contact'
+              smooth={true}
+              duration={500}
+              style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                color: '#ccc',
+                cursor: 'pointer',
+              }}
             >
-              Contact
-            </Link>
+              {t('contact')} {/* Translated "Contact" */}
+            </ScrollLink>
           </Grid>
+
+          {/* Contact Info Section */}
           <Grid item xs={12} md={4}>
-            <Typography variant="h6" gutterBottom>
-              Contact Us
+            <Typography
+              variant='h6'
+              gutterBottom
+              sx={{ fontWeight: 'bold', fontFamily: "'Poppins', sans-serif" }}
+            >
+              {t('contactUs')} {/* Translated "Contact Us" */}
             </Typography>
-            <Typography variant="body2">Phone: 51676461</Typography>
-            <Typography variant="body2">Email: info@linxexpress.com</Typography>
+            <Typography
+              variant='body2'
+              sx={{ fontSize: '0.9rem', color: '#ddd' }}
+            >
+              {t('phone')}: 51676461 {/* Translated "Phone" */}
+            </Typography>
+            <Typography
+              variant='body2'
+              sx={{ fontSize: '0.9rem', color: '#ddd' }}
+            >
+              {t('email')}: info@linxexpress.com {/* Translated "Email" */}
+            </Typography>
           </Grid>
         </Grid>
-        <Box sx={{ marginTop: "2rem", textAlign: "center" }}>
-          <Typography variant="body2">
-            © {new Date().getFullYear()} Linxexpress. All rights reserved.
+
+        {/* Copyright Section */}
+        <Box sx={{ marginTop: '2rem', textAlign: 'center' }}>
+          <Typography
+            variant='body2'
+            sx={{ fontSize: '0.9rem', color: '#ccc' }}
+          >
+            © {new Date().getFullYear()} Linxexpress. {t('allRightsReserved')}
           </Typography>
         </Box>
       </Container>

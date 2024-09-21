@@ -1,131 +1,149 @@
-import React from "react";
-import { Box, Typography, Card, CardContent, Container } from "@mui/material";
+import React, { useEffect } from 'react';
+import { Box, Typography, Card, CardContent, Container } from '@mui/material';
 import {
   LocalShipping,
   Speed,
   Shield,
   Inbox,
   TrackChanges,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
+import { useTranslation } from 'react-i18next'; // Import for translations
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS styles
 
 const Services = () => {
+  const { t } = useTranslation(); // Hook for translations
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 }); // Initialize AOS with default duration
+  }, []);
+
   const services = [
     {
-      title: "Transporting in all of Tunisia",
-      description:
-        "We offer comprehensive transportation services across Tunisia.",
-      icon: <LocalShipping sx={{ fontSize: 60, color: "#003285" }} />,
+      title: t('transportTitle'),
+      description: t('transportDesc'),
+      icon: <LocalShipping sx={{ fontSize: 60, color: '#8e24aa' }} />,
     },
     {
-      title: "Assure a fast connection with a transporter",
-      description:
-        "Our platform ensures quick and reliable connections with transporters.",
-      icon: <Speed sx={{ fontSize: 60, color: "#003285" }} />,
+      title: t('fastConnectionTitle'),
+      description: t('fastConnectionDesc'),
+      icon: <Speed sx={{ fontSize: 60, color: '#8e24aa' }} />,
     },
     {
-      title: "Secure",
-      description:
-        "Your goods are transported safely with our secure services.",
-      icon: <Shield sx={{ fontSize: 60, color: "#003285" }} />,
+      title: t('secureServicesTitle'),
+      description: t('secureServicesDesc'),
+      icon: <Shield sx={{ fontSize: 60, color: '#8e24aa' }} />,
     },
     {
-      title: "Transport all goods",
-      description: "We handle all types of goods with care and efficiency.",
-      icon: <Inbox sx={{ fontSize: 60, color: "#003285" }} />,
+      title: t('transportGoodsTitle'),
+      description: t('transportGoodsDesc'),
+      icon: <Inbox sx={{ fontSize: 60, color: '#8e24aa' }} />,
     },
     {
-      title: "Tracking",
-      description:
-        "Track your shipments in real-time with our tracking system.",
-      icon: <TrackChanges sx={{ fontSize: 60, color: "#003285" }} />,
+      title: t('realTimeTrackingTitle'),
+      description: t('realTimeTrackingDesc'),
+      icon: <TrackChanges sx={{ fontSize: 60, color: '#8e24aa' }} />,
     },
   ];
 
   return (
     <Box
-      name="services"
+      name='services'
       sx={{
-        position: "relative",
-        padding: "80px 20px",
-        overflow: "hidden",
-        backgroundColor: "white",
+        position: 'relative',
+        padding: '80px 20px',
+        color: '#FFF',
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         <Typography
-          variant="h4"
-          component="h2"
+          variant='h4'
+          component='h2'
+          align='center'
           gutterBottom
-          align="center"
-          color="#003285"
-          data-aos="fade-up"
-          data-aos-duration="1000"
+          sx={{
+            fontWeight: 'bold',
+            color: '#ffffff',
+            mb: 5,
+            fontFamily: "'Poppins', sans-serif",
+          }}
+          data-aos='fade-up' // AOS animation on the heading
         >
-          Our Services
+          {t('servicesTitle')} {/* Translated title for services section */}
         </Typography>
+
         <Box
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 2,
-            justifyContent: "center",
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: 3,
           }}
         >
-          {services.map((service) => (
+          {services.map((service, index) => (
             <Card
               key={service.title}
               sx={{
-                zIndex: 2,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                alignSelf: "normal",
-                minHeight: "100%",
-                textAlign: "center",
-                borderRadius: "8px",
-                padding: 2,
-
-                width: "100%",
-                maxWidth: "calc(33.333% - 16px)",
-                boxShadow: 3,
-                boxSizing: "border-box",
-                backgroundColor: "#003285",
-                color: "#FFF",
-                "@media (max-width: 600px)": {
-                  maxWidth: "100%",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+                borderRadius: '16px',
+                padding: 3,
+                width: '100%',
+                maxWidth: 'calc(33.333% - 24px)',
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.1)',
+                backgroundColor: '#fff',
+                color: '#1a237e',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.05)',
+                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.2)',
+                },
+                '@media (max-width: 960px)': {
+                  maxWidth: '100%',
                 },
               }}
-              data-aos="fade-up"
-              data-aos-duration="1200"
+              data-aos='fade-up' // AOS animation for each card
+              data-aos-delay={`${index * 100}`} // Add delay to stagger animations
             >
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "80px",
-                  width: "80px",
-                  marginBottom: 2,
-                  borderRadius: "50%",
-                  backgroundColor: "#FFF", // White background for the icons
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '100px',
+                  width: '100px',
+                  marginBottom: 3,
+                  borderRadius: '50%',
+                  background: '#fff',
+                  boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
                 }}
               >
                 {service.icon}
               </Box>
-              <CardContent
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  textAlign: "center",
-                  padding: 2,
-                  flexGrow: 1,
-                }}
-              >
-                <Typography variant="h6" gutterBottom>
+              <CardContent>
+                <Typography
+                  variant='h6'
+                  gutterBottom
+                  sx={{
+                    fontWeight: 'bold',
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: '1.2rem',
+                    color: '#8e24aa',
+                  }}
+                >
                   {service.title}
                 </Typography>
-                <Typography variant="body2">{service.description}</Typography>
+                <Typography
+                  variant='body2'
+                  sx={{
+                    color: '#555',
+                    fontFamily: "'Poppins', sans-serif",
+                  }}
+                >
+                  {service.description}
+                </Typography>
               </CardContent>
             </Card>
           ))}

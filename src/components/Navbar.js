@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -12,14 +12,12 @@ import {
   Container,
   Menu,
   MenuItem,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import PhoneIcon from "@mui/icons-material/Phone";
-import Flag from "react-flagkit";
-import { Link as ScrollLink } from "react-scroll";
-
-import { useTranslation } from "react-i18next";
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import Flag from 'react-flagkit';
+import { Link as ScrollLink } from 'react-scroll';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -29,8 +27,8 @@ const Navbar = () => {
 
   const toggleDrawer = (open) => (event) => {
     if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -57,32 +55,32 @@ const Navbar = () => {
       setScrolled(window.scrollY > 50); // Adjust the scroll position as needed
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const drawerContent = (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        height: "100%",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        height: '100%',
         width: 250,
         padding: 2,
-        boxSizing: "border-box",
-        backgroundColor: "#fff", // Drawer background color
+        boxSizing: 'border-box',
+        backgroundColor: '#fff',
       }}
     >
       <IconButton
         onClick={toggleDrawer(false)}
         sx={{
-          alignSelf: "flex-end",
-          color: "#003285",
+          alignSelf: 'flex-end',
+          color: '#003285',
           fontSize: 28,
         }}
       >
@@ -90,114 +88,88 @@ const Navbar = () => {
       </IconButton>
       <List
         sx={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
           padding: 0,
           margin: 0,
         }}
       >
-        {["Home", "Services", "Contact"].map((text) => (
+        {['home', 'services', 'contact'].map((text) => (
           <ListItem
             button
             key={text}
             onClick={toggleDrawer(false)}
             sx={{
-              width: "100%",
-              justifyContent: "center",
-              padding: "8px 0",
+              width: '100%',
+              justifyContent: 'center',
+              padding: '8px 0',
             }}
           >
             <ScrollLink
-              to={text.toLowerCase()}
+              to={text}
               smooth={true}
               duration={500}
               style={{
-                width: "100%",
-                textAlign: "center",
-                color: "#003285", // Always blue text in drawer
-                cursor: "pointer",
+                width: '100%',
+                textAlign: 'center',
+                color: '#003285',
+                cursor: 'pointer',
+                fontFamily: "'Lato', sans-serif",
               }}
             >
-              {text}
+              {i18n.t(text)} {/* Translate Home, Services, Contact */}
             </ScrollLink>
           </ListItem>
         ))}
+
         <ListItem
           sx={{
-            width: "100%",
-            justifyContent: "center",
-            padding: "8px 0",
+            width: '100%',
+            justifyContent: 'center',
+            padding: '8px 0',
           }}
         >
           <Button
-            variant="contained"
-            fullWidth
-            onClick={() => toggleDrawer(false)}
-            startIcon={<PhoneIcon />}
-            sx={{
-              backgroundColor: "#fff", // White background for buttons
-              color: "#003285", // Blue text
-              fontSize: { xs: "0.875rem", sm: "1rem" },
-              justifyContent: "center",
-              marginTop: 2,
-              "&:hover": {
-                backgroundColor: "#fff", // Maintain white background on hover
-                color: "#003285", // Maintain blue text on hover
-                filter: "brightness(0.9)", // Apply brightness effect on hover
-              },
-            }}
-          >
-            {i18n.t("joinDriver")}
-          </Button>
-        </ListItem>
-        <ListItem
-          sx={{
-            width: "100%",
-            justifyContent: "center",
-            padding: "8px 0",
-          }}
-        >
-          <Button
-            variant="outlined"
+            variant='outlined'
             fullWidth
             onClick={handleLanguageMenuOpen}
             sx={{
-              color: "#003285", // Always blue text in drawer
-              borderColor: "#003285", // Blue border
-              justifyContent: "center",
+              color: '#003285',
+              borderColor: '#003285',
+              justifyContent: 'center',
               marginTop: 2,
-              "&:hover": {
-                color: "#003285", // Maintain blue text on hover
-                borderColor: "#003285", // Maintain blue border on hover
-                filter: "brightness(0.9)", // Apply brightness effect on hover
+              '&:hover': {
+                color: '#003285',
+                borderColor: '#003285',
+                filter: 'brightness(0.9)',
               },
             }}
           >
             <Box
               sx={{
-                display: "flex",
-                alignItems: "center",
-                padding: "4px 8px",
+                display: 'flex',
+                alignItems: 'center',
+                padding: '4px 8px',
               }}
             >
               <Flag
                 country={
-                  i18n.language === "fr"
-                    ? "FR"
-                    : i18n.language === "ar"
-                    ? "TN"
-                    : "GB"
+                  i18n.language === 'fr'
+                    ? 'FR'
+                    : i18n.language === 'ar'
+                    ? 'TN'
+                    : 'GB'
                 }
                 style={{ marginRight: 8 }}
               />
-              <Typography variant="body1" color="inherit">
-                {i18n.language === "fr"
-                  ? "French"
-                  : i18n.language === "ar"
-                  ? "Arabic"
-                  : "English"}
+              <Typography variant='body1' color='inherit'>
+                {i18n.language === 'fr'
+                  ? 'French'
+                  : i18n.language === 'ar'
+                  ? 'Arabic'
+                  : 'English'}
               </Typography>
             </Box>
           </Button>
@@ -209,153 +181,137 @@ const Navbar = () => {
   return (
     <>
       <AppBar
-        position="fixed"
-        elevation={scrolled ? 4 : 0} // Shadow only when scrolled
+        position='fixed'
+        elevation={scrolled ? 4 : 0}
         sx={{
-          backgroundColor: scrolled ? "#fff" : "transparent", // Background changes to white on scroll
-          color: scrolled ? "#003285" : "#fff", // Text color changes to blue on scroll
-          transition: "background-color 0.3s, color 0.3s", // Smooth transition effect
-          width: "100%",
+          backgroundColor: scrolled ? '#fff' : 'transparent',
+          color: scrolled ? '#003285' : '#fff',
+          transition: 'background-color 0.3s, color 0.3s',
+          width: '100%',
           paddingX: { xs: 2, md: 4 },
-          boxSizing: "border-box",
+          boxSizing: 'border-box',
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth='lg'>
           <Toolbar
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
           >
             <Typography
-              variant="h6"
+              variant='h6'
               sx={{
-                color: scrolled ? "#003285" : "#fff", // Logo color changes to blue on scroll
+                fontFamily: "'Lato', sans-serif",
+                color: scrolled ? '#003285' : '#fff',
               }}
             >
               Linxexpress
             </Typography>
             <Box
               sx={{
-                display: { xs: "none", md: "flex" },
-                justifyContent: "flex-end",
-                alignItems: "center",
+                display: { xs: 'none', md: 'flex' },
+                justifyContent: 'flex-end',
+                alignItems: 'center',
                 flexGrow: 1,
               }}
             >
               <ScrollLink
-                to="home"
+                to='home'
                 smooth={true}
                 duration={500}
                 style={{
-                  margin: "0 16px",
-                  color: scrolled ? "#003285" : "#fff", // Blue text after scroll, white before scroll
-                  cursor: "pointer",
-                  transition: "color 0.3s", // Smooth transition effect
+                  margin: '0 16px',
+                  color: scrolled ? '#003285' : '#fff',
+                  cursor: 'pointer',
+                  transition: 'color 0.3s',
                 }}
-                className="navbar-link"
+                className='navbar-link'
               >
-                <Typography>{i18n.t("home")}</Typography>
+                <Typography>{i18n.t('home')}</Typography>
               </ScrollLink>
               <ScrollLink
-                to="services"
+                to='services'
                 smooth={true}
                 duration={500}
                 style={{
-                  margin: "0 16px",
-                  color: scrolled ? "#003285" : "#fff", // Blue text after scroll, white before scroll
-                  cursor: "pointer",
-                  transition: "color 0.3s", // Smooth transition effect
+                  margin: '0 16px',
+                  color: scrolled ? '#003285' : '#fff',
+                  cursor: 'pointer',
+                  transition: 'color 0.3s',
                 }}
-                className="navbar-link"
+                className='navbar-link'
               >
-                <Typography>{i18n.t("services")}</Typography>
+                <Typography>{i18n.t('services')}</Typography>
               </ScrollLink>
               <ScrollLink
-                to="contact"
+                to='contact'
                 smooth={true}
                 duration={500}
                 style={{
-                  margin: "0 16px",
-                  color: scrolled ? "#003285" : "#fff", // Blue text after scroll, white before scroll
-                  cursor: "pointer",
-                  transition: "color 0.3s", // Smooth transition effect
+                  margin: '0 16px',
+                  color: scrolled ? '#003285' : '#fff',
+                  cursor: 'pointer',
+                  transition: 'color 0.3s',
                 }}
-                className="navbar-link"
+                className='navbar-link'
               >
-                <Typography>{i18n.t("contact")}</Typography>
+                <Typography>{i18n.t('contact')}</Typography>
               </ScrollLink>
             </Box>
             <Box
               sx={{
-                display: { xs: "none", md: "flex" },
-                alignItems: "center",
-                gap: "1rem",
+                display: { xs: 'none', md: 'flex' },
+                alignItems: 'center',
+                gap: '1rem',
               }}
             >
               <Button
-                variant="contained"
-                // startIcon={<PhoneIcon />}
-                sx={{
-                  backgroundColor: "#fff", // White background for buttons
-                  color: "#003285", // Blue text
-                  marginLeft: 2,
-
-                  "&:hover": {
-                    backgroundColor: "#fff", // Maintain white background on hover
-                    color: "#003285", // Maintain blue text on hover
-                    filter: "brightness(0.9)", // Apply brightness effect on hover
-                  },
-                }}
-              >
-                {i18n.t("joinDriver")}
-              </Button>
-              <Button
-                variant="outlined"
+                variant='outlined'
                 onClick={handleLanguageMenuOpen}
                 sx={{
-                  gap: "1rem",
-                  color: scrolled ? "#003285" : "#fff", // Blue text after scroll, white before scroll
-                  borderColor: scrolled ? "#003285" : "#fff", // Blue border after scroll, white before scroll
+                  gap: '1rem',
+                  color: scrolled ? '#003285' : '#fff',
+                  borderColor: scrolled ? '#003285' : '#fff',
 
-                  "&:hover": {
-                    color: "#003285", // Maintain blue text on hover
-                    borderColor: "#003285", // Maintain blue border on hover
-                    filter: "brightness(0.9)", // Apply brightness effect on hover
+                  '&:hover': {
+                    color: '#003285',
+                    borderColor: '#003285',
+                    filter: 'brightness(0.9)',
                   },
                 }}
               >
                 <Box
-                  sx={{ display: "flex", alignItems: "center", gap: "1rem" }}
+                  sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
                 >
                   <Flag
                     country={
-                      i18n.language === "fr"
-                        ? "FR"
-                        : i18n.language === "ar"
-                        ? "TN"
-                        : "GB"
+                      i18n.language === 'fr'
+                        ? 'FR'
+                        : i18n.language === 'ar'
+                        ? 'TN'
+                        : 'GB'
                     }
                     style={{ marginRight: 8 }}
                   />
-                  <Typography variant="body1">
-                    {i18n.language === "fr"
-                      ? "French"
-                      : i18n.language === "ar"
-                      ? "Arabic"
-                      : "English"}
+                  <Typography variant='body1'>
+                    {i18n.language === 'fr'
+                      ? 'French'
+                      : i18n.language === 'ar'
+                      ? 'Arabic'
+                      : 'English'}
                   </Typography>
                 </Box>
               </Button>
             </Box>
             <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
+              edge='start'
+              color='inherit'
+              aria-label='menu'
               sx={{
-                display: { md: "none" },
-                color: scrolled ? "#003285" : "#fff",
+                display: { md: 'none' },
+                color: scrolled ? '#003285' : '#fff',
               }}
               onClick={toggleDrawer(true)}
             >
@@ -365,13 +321,13 @@ const Navbar = () => {
         </Container>
       </AppBar>
       <Drawer
-        anchor="right"
+        anchor={i18n.language === 'ar' ? 'left' : 'right'} // Open from left for Arabic
         open={drawerOpen}
         onClose={toggleDrawer(false)}
         sx={{
-          "& .MuiDrawer-paper": {
+          '& .MuiDrawer-paper': {
             width: 250,
-            backgroundColor: "#fff", // White background for drawer
+            backgroundColor: '#fff',
           },
         }}
       >
@@ -382,30 +338,30 @@ const Navbar = () => {
         open={Boolean(anchorEl)}
         onClose={handleLanguageMenuClose}
         sx={{
-          "& .MuiMenu-paper": {
-            backgroundColor: "#fff",
-            color: "#003285",
-            borderColor: "#003285",
+          '& .MuiMenu-paper': {
+            backgroundColor: '#fff',
+            color: '#003285',
+            borderColor: '#003285',
           },
         }}
       >
-        {["en", "fr", "ar"].map((lang) => (
+        {['en', 'fr', 'ar'].map((lang) => (
           <MenuItem
             key={lang}
             onClick={() => handleLanguageChange(lang)}
             sx={{
-              "&:hover": {
-                backgroundColor: "#f5f5f5", // Subtle hover effect for dropdown
-                filter: "brightness(0.9)", // Apply brightness effect on hover
+              '&:hover': {
+                backgroundColor: '#f5f5f5',
+                filter: 'brightness(0.9)',
               },
             }}
           >
             <Flag
-              country={lang === "fr" ? "FR" : lang === "ar" ? "TN" : "GB"}
+              country={lang === 'fr' ? 'FR' : lang === 'ar' ? 'TN' : 'GB'}
               style={{ marginRight: 8 }}
             />
-            <Typography variant="body1">
-              {lang === "fr" ? "French" : lang === "ar" ? "Arabic" : "English"}
+            <Typography variant='body1'>
+              {lang === 'fr' ? 'French' : lang === 'ar' ? 'Arabic' : 'English'}
             </Typography>
           </MenuItem>
         ))}
