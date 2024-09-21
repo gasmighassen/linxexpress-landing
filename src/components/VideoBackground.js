@@ -20,9 +20,6 @@ const VideoBackground = () => {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'black',
-        '@media (orientation: landscape)': {
-          height: '70vh', // Adjust height for landscape mode
-        },
       }}
     >
       {/* Background Video */}
